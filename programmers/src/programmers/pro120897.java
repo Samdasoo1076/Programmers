@@ -1,19 +1,25 @@
 package programmers;
 
-import java.util.Arrays;
-
+import java.util.*;
 public class pro120897 {
 
 	public static void main(String[] args) {
-		int[] arr = {1, 2, 3, 4, 6, 8, 12, 24};
-		int answer = 0;
-		int rs = 0;
-		Arrays.sort(arr);
-		for(int i : arr) {
-			rs = i;
+		List<Integer> divisors = new ArrayList<>();
+		int n = 24;
+		int[] answer = {};
+		
+		for(int i = 1; i * i <= n; i++) {
+			if(n % i == 0) {
+				divisors.add(i);
+				divisors.add(n / i);
+			}
 		}
-		System.out.println(rs);
-
+		Collections.sort(divisors);
+		answer = divisors.stream().mapToInt(Integer::intValue).distinct().toArray();
+		
+		for(int i = 0; i < answer.length; i++) {
+			System.out.print(answer[i] + ",");
+		}
 	}
 
 }
